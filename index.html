@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>РЕЛАКС — 100 звуків природи, медитації та таймер. Безкоштовно для Android</title>
+<meta name="description" content="РЕЛАКС — безкоштовний Android-додаток: 100 звуків природи, розслаблюючі аудіо, медитації та таймер. Для роботи, навчання, відпочинку й сну. Українською.">
+<meta name="theme-color" content="#0b1020">
+<link rel="canonical" href="https://pompum2009.github.io/">
+
+<!-- Open Graph: як виглядатиме посилання у Facebook / Telegram / Viber -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:url" content="https://pompum2009.github.io/">
+<meta property="og:site_name" content="РЕЛАКС">
+<meta property="og:title" content="РЕЛАКС — 100 звуків природи, медитації та таймер">
+<meta property="og:description" content="Звуки природи, розслаблюючі аудіо та медитації в одному додатку. Для роботи, навчання, відпочинку й сну. Безкоштовно для Android.">
+<meta property="og:image" content="https://play-lh.googleusercontent.com/mSk75bwiw3Zyj6qrlGPo7pvhWofXFcUbU6OlJobuAjZhQ2HR7s7dSYRbUIuujzGSfDDSHyEqNyzwXgTQqbxF3g=w512">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="https://play-lh.googleusercontent.com/mSk75bwiw3Zyj6qrlGPo7pvhWofXFcUbU6OlJobuAjZhQ2HR7s7dSYRbUIuujzGSfDDSHyEqNyzwXgTQqbxF3g=w64">
+
+<!-- Google зрозуміє, що це сторінка мобільного додатка -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "РЕЛАКС",
+  "operatingSystem": "Android",
+  "applicationCategory": "HealthApplication",
+  "description": "Безкоштовний Android-додаток із 100 звуками природи, розслаблюючими аудіо, медитаціями та таймером. Для роботи, навчання, відпочинку й сну.",
+  "inLanguage": "uk",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "UAH" },
+  "installUrl": "https://play.google.com/store/apps/details?id=com.shtuber.relax",
+  "author": { "@type": "Person", "name": "Anton-Vilhelm Shtuber" }
+}
+</script>
+
+<style>
+  :root{
+    --bg:#080c18;
+    --bg-2:#0e1428;
+    --card:rgba(255,255,255,.045);
+    --line:rgba(255,255,255,.10);
+    --text:#eef1f8;
+    --muted:#98a2bd;
+    --accent:#7aa2ff;
+    --accent-2:#9d7aff;
+    --radius:20px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* м'яке світло на фоні */
+  body::before{
+    content:"";
+    position:fixed; inset:-30% -10% auto -10%; height:80vh;
+    background:
+      radial-gradient(45% 55% at 30% 20%, rgba(122,162,255,.20), transparent 70%),
+      radial-gradient(40% 50% at 75% 10%, rgba(157,122,255,.16), transparent 70%);
+    filter:blur(20px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{position:relative; z-index:1; max-width:1040px; margin:0 auto; padding:0 22px}
+  a{color:inherit}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:76px 0 56px; text-align:center}
+  .icon{
+    width:104px;height:104px;border-radius:26px;
+    box-shadow:0 18px 50px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.09);
+    margin-bottom:26px;
+  }
+  h1{
+    font-size:clamp(30px,6.2vw,54px);
+    line-height:1.1;
+    letter-spacing:-.02em;
+    margin:0 0 18px;
+    font-weight:800;
+  }
+  h1 .grad{
+    background:linear-gradient(100deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{
+    font-size:clamp(16px,2.3vw,19px);
+    color:var(--muted);
+    max-width:620px;margin:0 auto 34px;
+  }
+  .cta{
+    display:inline-flex;align-items:center;gap:12px;
+    background:linear-gradient(100deg,var(--accent),var(--accent-2));
+    color:#08101f;font-weight:700;font-size:17px;
+    padding:16px 30px;border-radius:100px;text-decoration:none;
+    box-shadow:0 14px 36px rgba(122,162,255,.34);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(122,162,255,.46)}
+  .cta svg{width:22px;height:22px;flex:none}
+  .note{margin-top:16px;font-size:14px;color:var(--muted)}
+
+  /* ---------- СЕКЦІЇ ---------- */
+  section{padding:52px 0}
+  h2{
+    font-size:clamp(22px,3.6vw,32px);
+    letter-spacing:-.015em;margin:0 0 10px;font-weight:800;text-align:center;
+  }
+  .lead{color:var(--muted);text-align:center;max-width:600px;margin:0 auto 38px}
+
+  .grid{
+    display:grid;gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(232px,1fr));
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 24px;
+    backdrop-filter:blur(8px);
+  }
+  .card .emo{font-size:27px;line-height:1;margin-bottom:14px;display:block}
+  .card h3{margin:0 0 8px;font-size:17px;font-weight:700}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+
+  /* велика цифра */
+  .stat{
+    text-align:center;border-radius:var(--radius);
+    border:1px solid var(--line);
+    background:linear-gradient(160deg,rgba(122,162,255,.13),rgba(157,122,255,.07));
+    padding:40px 24px;
+  }
+  .stat b{
+    display:block;font-size:clamp(52px,11vw,86px);line-height:1;font-weight:800;
+    background:linear-gradient(100deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat span{color:var(--muted);font-size:17px}
+
+  /* ---------- СКРІНШОТИ ---------- */
+  .shots{
+    display:grid;gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  }
+  .shots img{
+    width:100%;height:auto;display:block;
+    border-radius:16px;border:1px solid var(--line);
+    background:var(--bg-2);
+  }
+
+  /* ---------- FAQ ---------- */
+  details{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+    margin-bottom:10px;
+    background:var(--card);
+  }
+  details[open]{border-color:rgba(122,162,255,.35)}
+  summary{
+    cursor:pointer;font-weight:650;font-size:16px;list-style:none;
+    display:flex;justify-content:space-between;gap:14px;align-items:center;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--accent);font-size:23px;font-weight:400;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{margin:14px 0 0;color:var(--muted);font-size:15px}
+
+  /* ---------- ФІНАЛЬНИЙ CTA ---------- */
+  .final{text-align:center;padding-bottom:20px}
+
+  footer{
+    border-top:1px solid var(--line);
+    margin-top:44px;padding:32px 0 44px;
+    color:var(--muted);font-size:14px;
+  }
+  .foot{
+    display:flex;flex-wrap:wrap;gap:16px 26px;
+    justify-content:space-between;align-items:center;
+  }
+  footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+  footer a:hover{color:var(--text);border-bottom-color:var(--line)}
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<header class="hero">
+  <div class="wrap">
+    <img class="icon" alt="Іконка додатка РЕЛАКС"
+         src="https://play-lh.googleusercontent.com/mSk75bwiw3Zyj6qrlGPo7pvhWofXFcUbU6OlJobuAjZhQ2HR7s7dSYRbUIuujzGSfDDSHyEqNyzwXgTQqbxF3g=w240-h480-rw">
+
+    <h1>Звуки, які тримають<br><span class="grad">фокус і спокій</span></h1>
+
+    <p class="sub">
+      РЕЛАКС — це 100 звуків природи, розслаблюючі аудіо та медитації
+      в одному простому додатку. Для роботи, навчання, відпочинку та сну.
+      Безкоштовно, українською, для Android.
+    </p>
+
+    <a class="cta" href="https://play.google.com/store/apps/details?id=com.shtuber.relax">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3.6 1.8 13.9 12 3.6 22.2A1.8 1.8 0 0 1 3 20.9V3.1c0-.5.2-1 .6-1.3Zm11.7 8.8 2.9-2.8 2.7 1.5c1.1.6 1.1 1.8 0 2.4l-2.7 1.5-2.9-2.6Zm-.7.7 3 3-9.8 9.6 6.8-12.6Zm0-1.4L7.8 2.3l9.8 9.6-3 3Z"/>
+      </svg>
+      Завантажити в Google Play
+    </a>
+
+    <p class="note">Безкоштовно · Android</p>
+  </div>
+</header>
+
+<!-- ═══════════════════ ЦИФРА ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="stat">
+      <b>100</b>
+      <span>звуків природи та атмосфер — від дощу до білого шуму</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ЩО ВСЕРЕДИНІ ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <h2>Що всередині</h2>
+    <p class="lead">
+      Один додаток замість десятка вкладок у браузері. Відкрили, вибрали звук — і займаєтесь своїм.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="emo">🎧</span>
+        <h3>100 звуків</h3>
+        <p>Дощ, океан, ліс, вогонь, білий шум та десятки інших записів на будь-який настрій.</p>
+      </div>
+      <div class="card">
+        <span class="emo">🌿</span>
+        <h3>Звуки природи</h3>
+        <p>Природні та розслаблюючі аудіо — для фону, відпочинку й заспокоєння.</p>
+      </div>
+      <div class="card">
+        <span class="emo">🧘</span>
+        <h3>Медитації</h3>
+        <p>Практики і для початківців, і для тих, хто вже має досвід.</p>
+      </div>
+      <div class="card">
+        <span class="emo">⏱️</span>
+        <h3>Таймер</h3>
+        <p>Виберіть час — звук вимкнеться сам. Для сну, роботи або практики.</p>
+      </div>
+      <div class="card">
+        <span class="emo">✨</span>
+        <h3>Простий інтерфейс</h3>
+        <p>Сучасний і зрозумілий. Не треба нічого вивчати.</p>
+      </div>
+      <div class="card">
+        <span class="emo">🎁</span>
+        <h3>Безкоштовно</h3>
+        <p>Додаток безкоштовний і підтримується рекламою.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ДЛЯ БУДЬ-ЯКОЇ СИТУАЦІЇ ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <h2>Для будь-якої ситуації</h2>
+    <p class="lead">Сон — лише один зі сценаріїв. Ось як РЕЛАКС використовують найчастіше.</p>
+
+    <div class="grid">
+      <div class="card"><p>💻 <strong>Робота й фокус</strong> — рівний фон, щоб не реагувати на кожен звук навколо.</p></div>
+      <div class="card"><p>📚 <strong>Навчання</strong> — допомагає тримати концентрацію під час підготовки.</p></div>
+      <div class="card"><p>📖 <strong>Читання та творчість</strong> — спокійна атмосфера для занурення в справу.</p></div>
+      <div class="card"><p>🧘 <strong>Медитація</strong> — практики для початківців і для досвідчених.</p></div>
+      <div class="card"><p>☕ <strong>Відпочинок</strong> — кілька хвилин спокою після насиченого дня.</p></div>
+      <div class="card"><p>😌 <strong>Заспокоєння</strong> — коли думки не дають спокою і треба заземлитися.</p></div>
+      <div class="card"><p>🌙 <strong>Сон</strong> — таймер вимкне звук, коли ви вже заснете.</p></div>
+      <div class="card"><p>👶 <strong>Діти</strong> — рівний шум, під який малюку легше заснути.</p></div>
+      <div class="card"><p>✈️ <strong>Дорога</strong> — перекриває шум транспорту, готелю чи сусідів.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ СКРІНШОТИ ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <h2>Як це виглядає</h2>
+    <p class="lead">Кілька екранів додатка.</p>
+
+    <div class="shots">
+      <img loading="lazy" alt="Екран додатка РЕЛАКС — вибір звуків"
+           src="https://play-lh.googleusercontent.com/6mCAOts8sx7IrulgGNRVB4NqvXgfNMdg-06tYHTCD3agmifDrLKyC9S7sWEA4SJ3gVIKr8DahvODPXBJWTMtdw=w526-h296-rw">
+      <img loading="lazy" alt="Екран додатка РЕЛАКС — відтворення звуку"
+           src="https://play-lh.googleusercontent.com/77dVSJcH8VZVRNT0tesNrlW5ZngVrbVrqNiHtxKYKFR2n8bWsTFtVh1CIxHJ_mJnTOH71zm-5B0e-JPOfdA0wg=w526-h296-rw">
+      <img loading="lazy" alt="Екран додатка РЕЛАКС — таймер"
+           src="https://play-lh.googleusercontent.com/Noq7wCV0R3Gonj6v5DqS_4tMKzFplb1G0kWxru1y4C-o2yA-20kwLg9kILK-W4_3tSZfEX3GAVPQktVWcmHd7dY=w526-h296-rw">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section>
+  <div class="wrap">
+    <h2>Часті питання</h2>
+    <p class="lead"></p>
+
+    <details open>
+      <summary>Що таке РЕЛАКС?</summary>
+      <p>Це додаток зі звуками для фону, відпочинку та сну. 100 звуків природи
+         й атмосфер, розслаблюючі аудіо та медитації — усе в одному місці,
+         з простим інтерфейсом і таймером.</p>
+    </details>
+
+    <details>
+      <summary>Це додаток тільки для сну?</summary>
+      <p>Ні. Сон — лише один зі сценаріїв. Звуки так само часто вмикають
+         для роботи й концентрації, під час навчання, для медитації,
+         читання або простого відпочинку.</p>
+    </details>
+
+    <details>
+      <summary>Скільки звуків у додатку?</summary>
+      <p>100 звуків: дощ, океан, ліс, вогонь, білий шум і багато інших.</p>
+    </details>
+
+    <details>
+      <summary>Чи можна залишити звук увімкненим і не вимикати вручну?</summary>
+      <p>Так, для цього є таймер. Виберіть потрібний час — і звук вимкнеться сам.</p>
+    </details>
+
+    <!-- ПЕРЕВІРТЕ цю відповідь перед публікацією.
+         Якщо частина звуків платна — так і напишіть, інакше люди ставитимуть 1 зірку. -->
+    <details>
+      <summary>Додаток справді безкоштовний?</summary>
+      <p>Так. Додаток безкоштовний і підтримується рекламою.</p>
+    </details>
+
+    <details>
+      <summary>Якими мовами доступний додаток?</summary>
+      <p>Українською та іншими мовами.</p>
+    </details>
+
+    <!-- ЗАМІНІТЬ або ВИДАЛІТЕ цей блок: я не знаю, чи працює додаток без інтернету.
+         Якщо працює — розкоментуйте. Якщо ні — не додавайте, це введе людей в оману.
+    <details>
+      <summary>Чи потрібен інтернет?</summary>
+      <p>Ні. Звуки доступні без підключення до мережі.</p>
+    </details>
+    -->
+
+    <details>
+      <summary>На яких пристроях працює?</summary>
+      <p>На будь-якому смартфоні або планшеті з Android.
+         <a href="https://play.google.com/store/apps/details?id=com.shtuber.relax">Відкрити в Google Play</a>.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ═══════════════════ ФІНАЛЬНИЙ CTA ═══════════════════ -->
+<section class="final">
+  <div class="wrap">
+    <h2>Знайдіть свій звук</h2>
+    <p class="lead">
+      Для роботи, навчання, відпочинку чи сну — у РЕЛАКС є звук під кожну ситуацію.
+    </p>
+    <a class="cta" href="https://play.google.com/store/apps/details?id=com.shtuber.relax">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3.6 1.8 13.9 12 3.6 22.2A1.8 1.8 0 0 1 3 20.9V3.1c0-.5.2-1 .6-1.3Zm11.7 8.8 2.9-2.8 2.7 1.5c1.1.6 1.1 1.8 0 2.4l-2.7 1.5-2.9-2.6Zm-.7.7 3 3-9.8 9.6 6.8-12.6Zm0-1.4L7.8 2.3l9.8 9.6-3 3Z"/>
+      </svg>
+      Завантажити безкоштовно
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 РЕЛАКС · Anton-Vilhelm Shtuber</div>
+    <div>
+      <a href="https://doc-hosting.flycricket.io/relax-privacy-policy/9f137476-e618-4430-9b13-ee7fb504dddc/privacy">Політика конфіденційності</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:pompum2009@gmail.com">pompum2009@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
