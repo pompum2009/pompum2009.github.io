@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  РЕЛАКС — лендінг. Один самодостатній файл: стилі, скрипти й 4 мови всередині.
+  Нічого крім цього файлу завантажувати не потрібно.
+
+  Мова за замовчуванням — англійська.
+  Автовизначення підтримує: uk, ru, zh (усі варіанти). Будь-яка інша мова -> англійська.
+
+  Перевірка мов без зміни налаштувань браузера:
+    index.html?lang=en    index.html?lang=uk
+    index.html?lang=ru    index.html?lang=zh
+-->
+
+<title>RELAX — 100 nature sounds, meditations and a timer. Free for Android</title>
+<meta name="description" content="RELAX is a free Android app: 100 nature sounds, relaxing audio, meditations and a timer. For work, studying, rest and sleep.">
+<meta name="theme-color" content="#0b1020">
+<link rel="canonical" href="https://pompum2009.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://pompum2009.github.io/">
+<meta property="og:site_name" content="RELAX">
+<meta property="og:title" content="RELAX — 100 nature sounds, meditations and a timer">
+<meta property="og:description" content="Nature sounds, relaxing audio and meditations in one app. For work, studying, rest and sleep. Free for Android.">
+<meta property="og:image" content="https://play-lh.googleusercontent.com/mSk75bwiw3Zyj6qrlGPo7pvhWofXFcUbU6OlJobuAjZhQ2HR7s7dSYRbUIuujzGSfDDSHyEqNyzwXgTQqbxF3g=w512">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="https://play-lh.googleusercontent.com/mSk75bwiw3Zyj6qrlGPo7pvhWofXFcUbU6OlJobuAjZhQ2HR7s7dSYRbUIuujzGSfDDSHyEqNyzwXgTQqbxF3g=w64">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "RELAX",
+  "operatingSystem": "Android",
+  "applicationCategory": "HealthApplication",
+  "description": "A free Android app with 100 nature sounds, relaxing audio, meditations and a timer. For work, studying, rest and sleep.",
+  "inLanguage": ["en", "uk", "ru", "zh-Hans"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "installUrl": "https://play.google.com/store/apps/details?id=com.shtuber.relax",
+  "author": { "@type": "Person", "name": "Anton-Vilhelm Shtuber" }
+}
+</script>
+
+<style>
+  :root{
+    --bg:#080c18;
+    --bg-2:#0e1428;
+    --card:rgba(255,255,255,.045);
+    --line:rgba(255,255,255,.10);
+    --text:#eef1f8;
+    --muted:#98a2bd;
+    --accent:#7aa2ff;
+    --accent-2:#9d7aff;
+    --radius:20px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* Китайська: інші шрифти, без негативного трекінгу */
+  html[lang="zh-Hans"] body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",
+                "PingFang SC","Hiragino Sans GB","Noto Sans SC",Roboto,Arial,sans-serif;
+  }
+  html[lang="zh-Hans"] h1,
+  html[lang="zh-Hans"] h2{letter-spacing:0}
+
+  body::before{
+    content:"";
+    position:fixed; inset:-30% -10% auto -10%; height:80vh;
+    background:
+      radial-gradient(45% 55% at 30% 20%, rgba(122,162,255,.20), transparent 70%),
+      radial-gradient(40% 50% at 75% 10%, rgba(157,122,255,.16), transparent 70%);
+    filter:blur(20px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{position:relative; z-index:1; max-width:1040px; margin:0 auto; padding:0 22px}
+  a{color:inherit}
+
+  .hero{padding:64px 0 56px; text-align:center}
+  .icon{
+    width:104px;height:104px;border-radius:26px;
+    box-shadow:0 18px 50px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.09);
+    margin-bottom:26px;
+  }
+  h1{
+    font-size:clamp(30px,6.2vw,54px);
+    line-height:1.1;
+    letter-spacing:-.02em;
+    margin:0 0 18px;
+    font-weight:800;
+  }
+  h1 .grad{
+    background:linear-gradient(100deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{
+    font-size:clamp(16px,2.3vw,19px);
+    color:var(--muted);
+    max-width:620px;margin:0 auto 34px;
+  }
+  .cta{
+    display:inline-flex;align-items:center;gap:12px;
+    background:linear-gradient(100deg,var(--accent),var(--accent-2));
+    color:#08101f;font-weight:700;font-size:17px;
+    padding:16px 30px;border-radius:100px;text-decoration:none;
+    box-shadow:0 14px 36px rgba(122,162,255,.34);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(122,162,255,.46)}
+  .cta svg{width:22px;height:22px;flex:none}
+  .note{margin-top:16px;font-size:14px;color:var(--muted)}
+
+  section{padding:52px 0}
+  h2{
+    font-size:clamp(22px,3.6vw,32px);
+    letter-spacing:-.015em;margin:0 0 10px;font-weight:800;text-align:center;
+  }
+  .lead{color:var(--muted);text-align:center;max-width:600px;margin:0 auto 38px}
+
+  .grid{
+    display:grid;gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(232px,1fr));
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 24px;
+    backdrop-filter:blur(8px);
+  }
+  .card .emo{font-size:27px;line-height:1;margin-bottom:14px;display:block}
+  .card h3{margin:0 0 8px;font-size:17px;font-weight:700}
+  .card p{margin:0;color:var(--muted);font-size:15px}
+
+  .stat{
+    text-align:center;border-radius:var(--radius);
+    border:1px solid var(--line);
+    background:linear-gradient(160deg,rgba(122,162,255,.13),rgba(157,122,255,.07));
+    padding:40px 24px;
+  }
+  .stat b{
+    display:block;font-size:clamp(52px,11vw,86px);line-height:1;font-weight:800;
+    background:linear-gradient(100deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat span{color:var(--muted);font-size:17px}
+
+  .shots{
+    display:grid;gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  }
+  .shots img{
+    width:100%;height:auto;display:block;
+    border-radius:16px;border:1px solid var(--line);
+    background:var(--bg-2);
+  }
+
+  details{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+    margin-bottom:10px;
+    background:var(--card);
+  }
+  details[open]{border-color:rgba(122,162,255,.35)}
+  summary{
+    cursor:pointer;font-weight:650;font-size:16px;list-style:none;
+    display:flex;justify-content:space-between;gap:14px;align-items:center;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--accent);font-size:23px;font-weight:400;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{margin:14px 0 0;color:var(--muted);font-size:15px}
+
+  .final{text-align:center;padding-bottom:20px}
+
+  footer{
+    border-top:1px solid var(--line);
+    margin-top:44px;padding:32px 0 44px;
+    color:var(--muted);font-size:14px;
+  }
+  .foot{
+    display:flex;flex-wrap:wrap;gap:16px 26px;
+    justify-content:space-between;align-items:center;
+  }
+  footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+  footer a:hover{color:var(--text);border-bottom-color:var(--line)}
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<header class="hero">
+  <div class="wrap">
+    <img class="icon" data-i18n-alt="alt_icon" alt="RELAX app icon"
+         src="https://play-lh.googleusercontent.com/mSk75bwiw3Zyj6qrlGPo7pvhWofXFcUbU6OlJobuAjZhQ2HR7s7dSYRbUIuujzGSfDDSHyEqNyzwXgTQqbxF3g=w240-h480-rw">
+
+    <h1 data-i18n-html="hero_h1">Sounds that hold<br><span class="grad">focus and calm</span></h1>
+
+    <p class="sub" data-i18n="hero_sub">
+      RELAX is 100 nature sounds, relaxing audio and meditations in one simple app.
+      For work, studying, rest and sleep. Free, for Android.
+    </p>
+
+    <a class="cta" href="https://play.google.com/store/apps/details?id=com.shtuber.relax">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3.6 1.8 13.9 12 3.6 22.2A1.8 1.8 0 0 1 3 20.9V3.1c0-.5.2-1 .6-1.3Zm11.7 8.8 2.9-2.8 2.7 1.5c1.1.6 1.1 1.8 0 2.4l-2.7 1.5-2.9-2.6Zm-.7.7 3 3-9.8 9.6 6.8-12.6Zm0-1.4L7.8 2.3l9.8 9.6-3 3Z"/>
+      </svg>
+      <span data-i18n="cta_play">Get it on Google Play</span>
+    </a>
+
+    <p class="note" data-i18n="cta_note">Free · Android</p>
+  </div>
+</header>
+
+<!-- ═══════════════ 100 ═══════════════ -->
+<section>
+  <div class="wrap">
+    <div class="stat">
+      <b>100</b>
+      <span data-i18n="stat_label">nature sounds and atmospheres — from rain to white noise</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHAT'S INSIDE ═══════════════ -->
+<section>
+  <div class="wrap">
+    <h2 data-i18n="inside_h2">What's inside</h2>
+    <p class="lead" data-i18n="inside_lead">
+      One app instead of a dozen browser tabs. Open it, pick a sound, get on with your day.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="emo">🎧</span>
+        <h3 data-i18n="c1_h">100 sounds</h3>
+        <p data-i18n="c1_p">Rain, ocean, forest, fire, white noise and dozens of other recordings for any mood.</p>
+      </div>
+      <div class="card">
+        <span class="emo">🌿</span>
+        <h3 data-i18n="c2_h">Nature sounds</h3>
+        <p data-i18n="c2_p">Natural and relaxing audio — for background, rest and calming down.</p>
+      </div>
+      <div class="card">
+        <span class="emo">🧘</span>
+        <h3 data-i18n="c3_h">Meditations</h3>
+        <p data-i18n="c3_p">Practices for beginners and for those who already have experience.</p>
+      </div>
+      <div class="card">
+        <span class="emo">⏱️</span>
+        <h3 data-i18n="c4_h">Timer</h3>
+        <p data-i18n="c4_p">Set the time — the sound stops by itself. For sleep, work or practice.</p>
+      </div>
+      <div class="card">
+        <span class="emo">✨</span>
+        <h3 data-i18n="c5_h">Simple interface</h3>
+        <p data-i18n="c5_p">Modern and clear. There's nothing to learn.</p>
+      </div>
+      <div class="card">
+        <span class="emo">🎁</span>
+        <h3 data-i18n="c6_h">Free</h3>
+        <p data-i18n="c6_p">The app is free and supported by ads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOR ANY SITUATION ═══════════════ -->
+<section>
+  <div class="wrap">
+    <h2 data-i18n="sit_h2">For any situation</h2>
+    <p class="lead" data-i18n="sit_lead">Sleep is only one of the scenarios. Here's how RELAX is used most often.</p>
+
+    <div class="grid">
+      <div class="card"><p data-i18n-html="s1">💻 <strong>Work &amp; focus</strong> — a steady background so you stop reacting to every sound around you.</p></div>
+      <div class="card"><p data-i18n-html="s2">📚 <strong>Studying</strong> — helps you stay concentrated while you revise.</p></div>
+      <div class="card"><p data-i18n-html="s3">📖 <strong>Reading &amp; creativity</strong> — a calm atmosphere to get absorbed in what you're doing.</p></div>
+      <div class="card"><p data-i18n-html="s4">🧘 <strong>Meditation</strong> — practices for beginners and for experienced users.</p></div>
+      <div class="card"><p data-i18n-html="s5">☕ <strong>Rest</strong> — a few minutes of calm after a packed day.</p></div>
+      <div class="card"><p data-i18n-html="s6">😌 <strong>Calming down</strong> — when your thoughts won't settle and you need to ground yourself.</p></div>
+      <div class="card"><p data-i18n-html="s7">🌙 <strong>Sleep</strong> — the timer turns the sound off once you're asleep.</p></div>
+      <div class="card"><p data-i18n-html="s8">👶 <strong>Children</strong> — steady noise that helps a baby fall asleep.</p></div>
+      <div class="card"><p data-i18n-html="s9">✈️ <strong>Travel</strong> — masks traffic, hotel or neighbour noise.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SCREENSHOTS ═══════════════ -->
+<section>
+  <div class="wrap">
+    <h2 data-i18n="shots_h2">What it looks like</h2>
+    <p class="lead" data-i18n="shots_lead">A few screens from the app.</p>
+
+    <div class="shots">
+      <img loading="lazy" data-i18n-alt="alt_shot1" alt="RELAX app screen — choosing a sound"
+           src="https://play-lh.googleusercontent.com/6mCAOts8sx7IrulgGNRVB4NqvXgfNMdg-06tYHTCD3agmifDrLKyC9S7sWEA4SJ3gVIKr8DahvODPXBJWTMtdw=w526-h296-rw">
+      <img loading="lazy" data-i18n-alt="alt_shot2" alt="RELAX app screen — sound playback"
+           src="https://play-lh.googleusercontent.com/77dVSJcH8VZVRNT0tesNrlW5ZngVrbVrqNiHtxKYKFR2n8bWsTFtVh1CIxHJ_mJnTOH71zm-5B0e-JPOfdA0wg=w526-h296-rw">
+      <img loading="lazy" data-i18n-alt="alt_shot3" alt="RELAX app screen — timer"
+           src="https://play-lh.googleusercontent.com/Noq7wCV0R3Gonj6v5DqS_4tMKzFplb1G0kWxru1y4C-o2yA-20kwLg9kILK-W4_3tSZfEX3GAVPQktVWcmHd7dY=w526-h296-rw">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section>
+  <div class="wrap">
+    <h2 data-i18n="faq_h2">Frequently asked questions</h2>
+    <p class="lead"></p>
+
+    <details open>
+      <summary data-i18n="q1">What is RELAX?</summary>
+      <p data-i18n="a1">It's an app with sounds for background, rest and sleep. 100 nature sounds
+         and atmospheres, relaxing audio and meditations — all in one place,
+         with a simple interface and a timer.</p>
+    </details>
+
+    <details>
+      <summary data-i18n="q2">Is it only a sleep app?</summary>
+      <p data-i18n="a2">No. Sleep is just one of the scenarios. The sounds are just as often used
+         for work and concentration, while studying, for meditation, reading
+         or simply resting.</p>
+    </details>
+
+    <details>
+      <summary data-i18n="q3">How many sounds are there?</summary>
+      <p data-i18n="a3">100 sounds: rain, ocean, forest, fire, white noise and many more.</p>
+    </details>
+
+    <details>
+      <summary data-i18n="q4">Can I leave the sound playing without switching it off manually?</summary>
+      <p data-i18n="a4">Yes, there's a timer for that. Pick the time you need and the sound stops by itself.</p>
+    </details>
+
+    <!-- CHECK this answer before publishing.
+         If some sounds are paid, say so — otherwise people will leave 1-star reviews. -->
+    <details>
+      <summary data-i18n="q5">Is the app really free?</summary>
+      <p data-i18n="a5">Yes. The app is free and supported by ads.</p>
+    </details>
+
+    <details>
+      <summary data-i18n="q6">Which languages is the app available in?</summary>
+      <p data-i18n="a6">English, Ukrainian, Simplified Chinese and Russian.</p>
+    </details>
+
+    <!-- REPLACE or DELETE this block: I don't know whether the app works offline.
+         If it does — uncomment. If not — leave it commented, or you'll mislead people.
+    <details>
+      <summary>Does it need an internet connection?</summary>
+      <p>No. The sounds are available offline.</p>
+    </details>
+    -->
+
+    <details>
+      <summary data-i18n="q7">Which devices does it work on?</summary>
+      <p>
+        <span data-i18n="a7">Any Android phone or tablet.</span>
+        <a href="https://play.google.com/store/apps/details?id=com.shtuber.relax"
+           data-i18n="a7_link">Open in Google Play</a>
+      </p>
+    </details>
+  </div>
+</section>
+
+<!-- ═══════════════ FINAL CTA ═══════════════ -->
+<section class="final">
+  <div class="wrap">
+    <h2 data-i18n="final_h2">Find your sound</h2>
+    <p class="lead" data-i18n="final_lead">
+      For work, studying, rest or sleep — RELAX has a sound for every situation.
+    </p>
+    <a class="cta" href="https://play.google.com/store/apps/details?id=com.shtuber.relax">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3.6 1.8 13.9 12 3.6 22.2A1.8 1.8 0 0 1 3 20.9V3.1c0-.5.2-1 .6-1.3Zm11.7 8.8 2.9-2.8 2.7 1.5c1.1.6 1.1 1.8 0 2.4l-2.7 1.5-2.9-2.6Zm-.7.7 3 3-9.8 9.6 6.8-12.6Zm0-1.4L7.8 2.3l9.8 9.6-3 3Z"/>
+      </svg>
+      <span data-i18n="final_cta">Download for free</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 RELAX · Anton-Vilhelm Shtuber</div>
+    <div>
+      <a href="https://doc-hosting.flycricket.io/relax-privacy-policy/9f137476-e618-4430-9b13-ee7fb504dddc/privacy"
+         data-i18n="foot_privacy">Privacy Policy</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:pompum2009@gmail.com">pompum2009@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════ ПЕРЕКЛАДИ ТА АВТОВИЗНАЧЕННЯ ═══════════════
+     Скрипт стоїть у кінці body і виконується синхронно, до першого
+     малювання — тому сторінка не «блимає» англійською. -->
+<script>
+(function () {
+  "use strict";
+
+  var I18N = {
+
+    /* ───────────── ENGLISH (за замовчуванням) ───────────── */
+    en: {
+      page_title: `RELAX — 100 nature sounds, meditations and a timer. Free for Android`,
+      page_desc: `RELAX is a free Android app: 100 nature sounds, relaxing audio, meditations and a timer. For work, studying, rest and sleep.`,
+      hero_h1: `Sounds that hold<br><span class="grad">focus and calm</span>`,
+      hero_sub: `RELAX is 100 nature sounds, relaxing audio and meditations in one simple app. For work, studying, rest and sleep. Free, for Android.`,
+      cta_play: `Get it on Google Play`,
+      cta_note: `Free · Android`,
+      stat_label: `nature sounds and atmospheres — from rain to white noise`,
+      inside_h2: `What's inside`,
+      inside_lead: `One app instead of a dozen browser tabs. Open it, pick a sound, get on with your day.`,
+      c1_h: `100 sounds`,
+      c1_p: `Rain, ocean, forest, fire, white noise and dozens of other recordings for any mood.`,
+      c2_h: `Nature sounds`,
+      c2_p: `Natural and relaxing audio — for background, rest and calming down.`,
+      c3_h: `Meditations`,
+      c3_p: `Practices for beginners and for those who already have experience.`,
+      c4_h: `Timer`,
+      c4_p: `Set the time — the sound stops by itself. For sleep, work or practice.`,
+      c5_h: `Simple interface`,
+      c5_p: `Modern and clear. There's nothing to learn.`,
+      c6_h: `Free`,
+      c6_p: `The app is free and supported by ads.`,
+      sit_h2: `For any situation`,
+      sit_lead: `Sleep is only one of the scenarios. Here's how RELAX is used most often.`,
+      s1: `💻 <strong>Work &amp; focus</strong> — a steady background so you stop reacting to every sound around you.`,
+      s2: `📚 <strong>Studying</strong> — helps you stay concentrated while you revise.`,
+      s3: `📖 <strong>Reading &amp; creativity</strong> — a calm atmosphere to get absorbed in what you're doing.`,
+      s4: `🧘 <strong>Meditation</strong> — practices for beginners and for experienced users.`,
+      s5: `☕ <strong>Rest</strong> — a few minutes of calm after a packed day.`,
+      s6: `😌 <strong>Calming down</strong> — when your thoughts won't settle and you need to ground yourself.`,
+      s7: `🌙 <strong>Sleep</strong> — the timer turns the sound off once you're asleep.`,
+      s8: `👶 <strong>Children</strong> — steady noise that helps a baby fall asleep.`,
+      s9: `✈️ <strong>Travel</strong> — masks traffic, hotel or neighbour noise.`,
+      shots_h2: `What it looks like`,
+      shots_lead: `A few screens from the app.`,
+      faq_h2: `Frequently asked questions`,
+      q1: `What is RELAX?`,
+      a1: `It's an app with sounds for background, rest and sleep. 100 nature sounds and atmospheres, relaxing audio and meditations — all in one place, with a simple interface and a timer.`,
+      q2: `Is it only a sleep app?`,
+      a2: `No. Sleep is just one of the scenarios. The sounds are just as often used for work and concentration, while studying, for meditation, reading or simply resting.`,
+      q3: `How many sounds are there?`,
+      a3: `100 sounds: rain, ocean, forest, fire, white noise and many more.`,
+      q4: `Can I leave the sound playing without switching it off manually?`,
+      a4: `Yes, there's a timer for that. Pick the time you need and the sound stops by itself.`,
+      q5: `Is the app really free?`,
+      a5: `Yes. The app is free and supported by ads.`,
+      q6: `Which languages is the app available in?`,
+      a6: `English, Ukrainian, Simplified Chinese and Russian.`,
+      q7: `Which devices does it work on?`,
+      a7: `Any Android phone or tablet.`,
+      a7_link: `Open in Google Play`,
+      final_h2: `Find your sound`,
+      final_lead: `For work, studying, rest or sleep — RELAX has a sound for every situation.`,
+      final_cta: `Download for free`,
+      foot_privacy: `Privacy Policy`,
+      alt_icon: `RELAX app icon`,
+      alt_shot1: `RELAX app screen — choosing a sound`,
+      alt_shot2: `RELAX app screen — sound playback`,
+      alt_shot3: `RELAX app screen — timer`
+    },
+
+    /* ───────────── УКРАЇНСЬКА ───────────── */
+    uk: {
+      page_title: `РЕЛАКС — 100 звуків природи, медитації та таймер. Безкоштовно для Android`,
+      page_desc: `РЕЛАКС — безкоштовний Android-додаток: 100 звуків природи, розслаблюючі аудіо, медитації та таймер. Для роботи, навчання, відпочинку й сну.`,
+      hero_h1: `Звуки, які тримають<br><span class="grad">фокус і спокій</span>`,
+      hero_sub: `РЕЛАКС — це 100 звуків природи, розслаблюючі аудіо та медитації в одному простому додатку. Для роботи, навчання, відпочинку та сну. Безкоштовно, для Android.`,
+      cta_play: `Завантажити в Google Play`,
+      cta_note: `Безкоштовно · Android`,
+      stat_label: `звуків природи та атмосфер — від дощу до білого шуму`,
+      inside_h2: `Що всередині`,
+      inside_lead: `Один додаток замість десятка вкладок у браузері. Відкрили, вибрали звук — і займаєтесь своїм.`,
+      c1_h: `100 звуків`,
+      c1_p: `Дощ, океан, ліс, вогонь, білий шум та десятки інших записів на будь-який настрій.`,
+      c2_h: `Звуки природи`,
+      c2_p: `Природні та розслаблюючі аудіо — для фону, відпочинку й заспокоєння.`,
+      c3_h: `Медитації`,
+      c3_p: `Практики і для початківців, і для тих, хто вже має досвід.`,
+      c4_h: `Таймер`,
+      c4_p: `Виберіть час — звук вимкнеться сам. Для сну, роботи або практики.`,
+      c5_h: `Простий інтерфейс`,
+      c5_p: `Сучасний і зрозумілий. Не треба нічого вивчати.`,
+      c6_h: `Безкоштовно`,
+      c6_p: `Додаток безкоштовний і підтримується рекламою.`,
+      sit_h2: `Для будь-якої ситуації`,
+      sit_lead: `Сон — лише один зі сценаріїв. Ось як РЕЛАКС використовують найчастіше.`,
+      s1: `💻 <strong>Робота й фокус</strong> — рівний фон, щоб не реагувати на кожен звук навколо.`,
+      s2: `📚 <strong>Навчання</strong> — допомагає тримати концентрацію під час підготовки.`,
+      s3: `📖 <strong>Читання та творчість</strong> — спокійна атмосфера для занурення в справу.`,
+      s4: `🧘 <strong>Медитація</strong> — практики для початківців і для досвідчених.`,
+      s5: `☕ <strong>Відпочинок</strong> — кілька хвилин спокою після насиченого дня.`,
+      s6: `😌 <strong>Заспокоєння</strong> — коли думки не дають спокою і треба заземлитися.`,
+      s7: `🌙 <strong>Сон</strong> — таймер вимкне звук, коли ви вже заснете.`,
+      s8: `👶 <strong>Діти</strong> — рівний шум, під який малюку легше заснути.`,
+      s9: `✈️ <strong>Дорога</strong> — перекриває шум транспорту, готелю чи сусідів.`,
+      shots_h2: `Як це виглядає`,
+      shots_lead: `Кілька екранів додатка.`,
+      faq_h2: `Часті питання`,
+      q1: `Що таке РЕЛАКС?`,
+      a1: `Це додаток зі звуками для фону, відпочинку та сну. 100 звуків природи й атмосфер, розслаблюючі аудіо та медитації — усе в одному місці, з простим інтерфейсом і таймером.`,
+      q2: `Це додаток тільки для сну?`,
+      a2: `Ні. Сон — лише один зі сценаріїв. Звуки так само часто вмикають для роботи й концентрації, під час навчання, для медитації, читання або простого відпочинку.`,
+      q3: `Скільки звуків у додатку?`,
+      a3: `100 звуків: дощ, океан, ліс, вогонь, білий шум і багато інших.`,
+      q4: `Чи можна залишити звук увімкненим і не вимикати вручну?`,
+      a4: `Так, для цього є таймер. Виберіть потрібний час — і звук вимкнеться сам.`,
+      q5: `Додаток справді безкоштовний?`,
+      a5: `Так. Додаток безкоштовний і підтримується рекламою.`,
+      q6: `Якими мовами доступний додаток?`,
+      a6: `Українською, англійською, китайською (спрощеною) та російською.`,
+      q7: `На яких пристроях працює?`,
+      a7: `На будь-якому смартфоні або планшеті з Android.`,
+      a7_link: `Відкрити в Google Play`,
+      final_h2: `Знайдіть свій звук`,
+      final_lead: `Для роботи, навчання, відпочинку чи сну — у РЕЛАКС є звук під кожну ситуацію.`,
+      final_cta: `Завантажити безкоштовно`,
+      foot_privacy: `Політика конфіденційності`,
+      alt_icon: `Іконка додатка РЕЛАКС`,
+      alt_shot1: `Екран додатка РЕЛАКС — вибір звуків`,
+      alt_shot2: `Екран додатка РЕЛАКС — відтворення звуку`,
+      alt_shot3: `Екран додатка РЕЛАКС — таймер`
+    },
+
+    /* ───────────── РУССКИЙ ───────────── */
+    ru: {
+      page_title: `РЕЛАКС — 100 звуков природы, медитации и таймер. Бесплатно для Android`,
+      page_desc: `РЕЛАКС — бесплатное приложение для Android: 100 звуков природы, расслабляющее аудио, медитации и таймер. Для работы, учёбы, отдыха и сна.`,
+      hero_h1: `Звуки, которые держат<br><span class="grad">фокус и спокойствие</span>`,
+      hero_sub: `РЕЛАКС — это 100 звуков природы, расслабляющее аудио и медитации в одном простом приложении. Для работы, учёбы, отдыха и сна. Бесплатно, для Android.`,
+      cta_play: `Скачать в Google Play`,
+      cta_note: `Бесплатно · Android`,
+      stat_label: `звуков природы и атмосфер — от дождя до белого шума`,
+      inside_h2: `Что внутри`,
+      inside_lead: `Одно приложение вместо десятка вкладок в браузере. Открыли, выбрали звук — и занимаетесь своим делом.`,
+      c1_h: `100 звуков`,
+      c1_p: `Дождь, океан, лес, огонь, белый шум и десятки других записей на любое настроение.`,
+      c2_h: `Звуки природы`,
+      c2_p: `Природное и расслабляющее аудио — для фона, отдыха и успокоения.`,
+      c3_h: `Медитации`,
+      c3_p: `Практики и для начинающих, и для тех, у кого уже есть опыт.`,
+      c4_h: `Таймер`,
+      c4_p: `Выберите время — звук выключится сам. Для сна, работы или практики.`,
+      c5_h: `Простой интерфейс`,
+      c5_p: `Современный и понятный. Учиться ничему не нужно.`,
+      c6_h: `Бесплатно`,
+      c6_p: `Приложение бесплатное и поддерживается рекламой.`,
+      sit_h2: `Для любой ситуации`,
+      sit_lead: `Сон — лишь один из сценариев. Вот как РЕЛАКС используют чаще всего.`,
+      s1: `💻 <strong>Работа и фокус</strong> — ровный фон, чтобы не реагировать на каждый звук вокруг.`,
+      s2: `📚 <strong>Учёба</strong> — помогает держать концентрацию во время подготовки.`,
+      s3: `📖 <strong>Чтение и творчество</strong> — спокойная атмосфера, чтобы погрузиться в дело.`,
+      s4: `🧘 <strong>Медитация</strong> — практики для начинающих и для опытных.`,
+      s5: `☕ <strong>Отдых</strong> — несколько минут тишины после насыщенного дня.`,
+      s6: `😌 <strong>Успокоение</strong> — когда мысли не дают покоя и нужно заземлиться.`,
+      s7: `🌙 <strong>Сон</strong> — таймер выключит звук, когда вы уже заснёте.`,
+      s8: `👶 <strong>Дети</strong> — ровный шум, под который малышу легче заснуть.`,
+      s9: `✈️ <strong>Дорога</strong> — перекрывает шум транспорта, отеля или соседей.`,
+      shots_h2: `Как это выглядит`,
+      shots_lead: `Несколько экранов приложения.`,
+      faq_h2: `Частые вопросы`,
+      q1: `Что такое РЕЛАКС?`,
+      a1: `Это приложение со звуками для фона, отдыха и сна. 100 звуков природы и атмосфер, расслабляющее аудио и медитации — всё в одном месте, с простым интерфейсом и таймером.`,
+      q2: `Это приложение только для сна?`,
+      a2: `Нет. Сон — лишь один из сценариев. Звуки так же часто включают для работы и концентрации, во время учёбы, для медитации, чтения или простого отдыха.`,
+      q3: `Сколько звуков в приложении?`,
+      a3: `100 звуков: дождь, океан, лес, огонь, белый шум и много других.`,
+      q4: `Можно оставить звук включённым и не выключать вручную?`,
+      a4: `Да, для этого есть таймер. Выберите нужное время — и звук выключится сам.`,
+      q5: `Приложение действительно бесплатное?`,
+      a5: `Да. Приложение бесплатное и поддерживается рекламой.`,
+      q6: `На каких языках доступно приложение?`,
+      a6: `На русском, украинском, английском и китайском (упрощённом).`,
+      q7: `На каких устройствах работает?`,
+      a7: `На любом смартфоне или планшете с Android.`,
+      a7_link: `Открыть в Google Play`,
+      final_h2: `Найдите свой звук`,
+      final_lead: `Для работы, учёбы, отдыха или сна — в РЕЛАКС есть звук под каждую ситуацию.`,
+      final_cta: `Скачать бесплатно`,
+      foot_privacy: `Политика конфиденциальности`,
+      alt_icon: `Иконка приложения РЕЛАКС`,
+      alt_shot1: `Экран приложения РЕЛАКС — выбор звуков`,
+      alt_shot2: `Экран приложения РЕЛАКС — воспроизведение звука`,
+      alt_shot3: `Экран приложения РЕЛАКС — таймер`
+    },
+
+    /* ───────────── 简体中文 ───────────── */
+    zh: {
+      page_title: `RELAX — 100 种自然音效、冥想与定时器。Android 免费应用`,
+      page_desc: `RELAX 是一款免费的 Android 应用：100 种自然音效、放松音频、冥想与定时器。适合工作、学习、休息与睡眠。`,
+      hero_h1: `专注与平静<br><span class="grad">就在这些声音里</span>`,
+      hero_sub: `RELAX 把 100 种自然音效、放松音频和冥想放进一个简单的应用。适合工作、学习、休息和睡眠。免费下载，适用于 Android。`,
+      cta_play: `在 Google Play 下载`,
+      cta_note: `免费 · Android`,
+      stat_label: `种自然音效与氛围音——从雨声到白噪音`,
+      inside_h2: `应用内容`,
+      inside_lead: `一个应用，省下十几个浏览器标签页。打开、选一个音效，然后专心做你的事。`,
+      c1_h: `100 种音效`,
+      c1_p: `雨声、海浪、森林、壁炉、白噪音，还有几十种适合各种心情的录音。`,
+      c2_h: `自然音效`,
+      c2_p: `自然的放松音频——适合当背景音、休息和静心。`,
+      c3_h: `冥想`,
+      c3_p: `既有适合初学者的练习，也有适合有经验者的练习。`,
+      c4_h: `定时器`,
+      c4_p: `设定时间，声音会自动停止。适合睡眠、工作或练习。`,
+      c5_h: `简洁界面`,
+      c5_p: `现代、清晰，不用学就会用。`,
+      c6_h: `免费`,
+      c6_p: `应用免费，通过广告支持运营。`,
+      sit_h2: `适合各种场景`,
+      sit_lead: `睡眠只是其中一种。以下是 RELAX 最常被使用的场景。`,
+      s1: `💻 <strong>工作与专注</strong>——稳定的背景音，让你不再对周围的每个声响都有反应。`,
+      s2: `📚 <strong>学习</strong>——帮助你在复习时保持专注。`,
+      s3: `📖 <strong>阅读与创作</strong>——安静的氛围，让你沉入正在做的事。`,
+      s4: `🧘 <strong>冥想</strong>——适合初学者和进阶者的练习。`,
+      s5: `☕ <strong>休息</strong>——忙碌一天后，给自己几分钟安静。`,
+      s6: `😌 <strong>静心</strong>——当思绪停不下来、需要稳住自己的时候。`,
+      s7: `🌙 <strong>睡眠</strong>——你睡着后，定时器会自动关掉声音。`,
+      s8: `👶 <strong>孩子</strong>——平稳的噪音，帮助宝宝入睡。`,
+      s9: `✈️ <strong>出行</strong>——盖过交通、酒店或邻居的噪音。`,
+      shots_h2: `界面预览`,
+      shots_lead: `应用的几个界面。`,
+      faq_h2: `常见问题`,
+      q1: `RELAX 是什么？`,
+      a1: `它是一款提供背景音、休息和睡眠音效的应用。100 种自然音效与氛围音、放松音频和冥想——全都在一个地方，界面简单，还带定时器。`,
+      q2: `它只能用来助眠吗？`,
+      a2: `不是。睡眠只是其中一种场景。这些音效同样常被用于工作和专注、学习、冥想、阅读，或者单纯地休息。`,
+      q3: `应用里有多少种音效？`,
+      a3: `100 种：雨声、海浪、森林、壁炉、白噪音等等。`,
+      q4: `可以一直播放、不用手动关闭吗？`,
+      a4: `可以，应用里有定时器。设定好时间，声音会自动停止。`,
+      q5: `应用真的免费吗？`,
+      a5: `是的。应用免费，通过广告支持运营。`,
+      q6: `应用支持哪些语言？`,
+      a6: `简体中文、英文、乌克兰语和俄语。`,
+      q7: `支持哪些设备？`,
+      a7: `任何 Android 手机或平板电脑。`,
+      a7_link: `在 Google Play 中打开`,
+      final_h2: `找到属于你的声音`,
+      final_lead: `工作、学习、休息还是睡眠——RELAX 为每种场景都准备了声音。`,
+      final_cta: `免费下载`,
+      foot_privacy: `隐私政策`,
+      alt_icon: `RELAX 应用图标`,
+      alt_shot1: `RELAX 应用界面——选择音效`,
+      alt_shot2: `RELAX 应用界面——播放音效`,
+      alt_shot3: `RELAX 应用界面——定时器`
+    }
+  };
+
+  /* ── 1. Визначаємо мову ── */
+  function detect() {
+    var list = (navigator.languages && navigator.languages.length)
+      ? navigator.languages
+      : [navigator.language || ""];
+
+    for (var i = 0; i < list.length; i++) {
+      var base = String(list[i]).toLowerCase().split("-")[0];
+      if (base === "uk") return "uk";
+      if (base === "ru") return "ru";
+      if (base === "zh") return "zh";
+      if (base === "en") return "en";
+    }
+    return "en"; // усе невідоме -> англійська
+  }
+
+  // ручне перевизначення для перевірки: ?lang=en|uk|ru|zh
+  var forced = location.search.match(/[?&]lang=(en|uk|ru|zh)(?:&|$)/i);
+  var lang = forced ? forced[1].toLowerCase() : detect();
+  var d = I18N[lang] || I18N.en;
+
+  /* ── 2. Застосовуємо ── */
+  document.documentElement.lang = (lang === "zh") ? "zh-Hans" : lang;
+  document.title = d.page_title;
+
+  var md = document.querySelector('meta[name="description"]');
+  if (md) md.setAttribute("content", d.page_desc);
+
+  var og = document.querySelector('meta[property="og:title"]');
+  if (og) og.setAttribute("content", d.page_title);
+  var ogd = document.querySelector('meta[property="og:description"]');
+  if (ogd) ogd.setAttribute("content", d.page_desc);
+
+  // прості тексти
+  var nodes = document.querySelectorAll("[data-i18n]");
+  for (var n = 0; n < nodes.length; n++) {
+    var key = nodes[n].getAttribute("data-i18n");
+    if (d[key] != null) nodes[n].textContent = d[key];
+  }
+
+  // тексти з розміткою всередині
+  var htmls = document.querySelectorAll("[data-i18n-html]");
+  for (var h = 0; h < htmls.length; h++) {
+    var hkey = htmls[h].getAttribute("data-i18n-html");
+    if (d[hkey] != null) htmls[h].innerHTML = d[hkey];
+  }
+
+  // alt у зображень
+  var alts = document.querySelectorAll("[data-i18n-alt]");
+  for (var a = 0; a < alts.length; a++) {
+    var akey = alts[a].getAttribute("data-i18n-alt");
+    if (d[akey] != null) alts[a].setAttribute("alt", d[akey]);
+  }
+})();
+</script>
+</body>
+</html>
